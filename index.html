@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: rgb(225, 218, 218);
+        }
+        .container{
+            background-color: white;
+            width: 30%;
+            height: 40vh;
+            margin: 100px auto;
+            border: 5px solid rgb(125, 142, 125);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            box-shadow: inset 30%;
+            gap: 20px;
+        }
+        input{
+            width: 50%;
+            height: 25px;
+            margin-bottom: 8px;
+            font-size: 20px;
+            padding: 5px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        h1{
+            margin-top: 8px;
+        }
+        button{
+            width: 50%;
+            height: 30px;
+            font-size: 20px;
+            background-color: rgb(59, 59, 215);
+            text-align: center;
+            border-radius: 8px;
+            border-style: none;
+            padding: 3px;
+           
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Age Calculator</h1>
+        <h3>enter your birth date</h3>
+        <input type="date">
+        <button>calculate</button>
+        <p></p>
+        </div>
+        <script>
+            let date, birthyear, currentYear;
+            let dateEl = document.querySelector("input");
+            let btnEl = document.querySelector("button");
+            let paraEl = document.querySelector("p");
+            dateEl.addEventListener("change", function(e){
+                 date = e.target.value;
+                console.log(date); 
+                 birthyear = new Date(date).getFullYear();
+                console.log(birthyear);
+                currentYear = new Date().getFullYear();
+                console.log(currentYear);
+            })
+            btnEl.addEventListener("click", function(){
+                paraEl.textContent = `Your current age is ${currentYear - birthyear} years`
+            })
+           
+            
+        </script>
+    
+</body>
+</html>
