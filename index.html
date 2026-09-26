@@ -17,7 +17,6 @@
         }
         input{
             margin-top: 200px;
-        
             padding: 20px;
             width: 20%;
             height: 50px;
@@ -31,6 +30,11 @@
             transition: all 0.3s ease;
             border: 2px solid black;
         }
+        .checked{
+            text-decoration: line-through;
+            color: red;
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
@@ -41,32 +45,58 @@
     <script>
         let inputEl = document.querySelector("input");
         inputEl.addEventListener("keypress", function(event){            
-            if(event.key==="Enter"){
+            if(event.key==="Enter" && inputEl.value.trim()!== ""){
                 let task = document.createElement("li");
                 let taskContainer = document.createElement("div");
-                let btn = document.createElement("button");
+                let deleteBtn = document.createElement("button");
+                let checkedBtn = document.createElement("button");
+                checkedBtn.innerHTML = "✅";
                 let imgEl = document.createElement("img");
                 imgEl.src= "./bin.png";
-                imgEl.style.height="20px";
-                imgEl.style.width="20px";
+                imgEl.style.height="12px";
+                imgEl.style.width="12px";
                 let span = document.createElement("span");
                 span.innerText=inputEl.value;
                 let innerDivEl = document.createElement("div");
-                btn.appendChild(imgEl);
-                innerDivEl.appendChild(span);
-                innerDivEl.appendChild(btn);
+                innerDivEl.style.display="flex";
+                innerDivEl.style.alignItems="center";
+                innerDivEl.style.justifyContent="space-between";
+                innerDivEl.style.gap="5px";
+                deleteBtn.style.background="transparent";
+                deleteBtn.style.border="none";
+                deleteBtn.style.cursor="pointer";
+                deleteBtn.style.display="flex";
+                deleteBtn.style.alignItems="center";
+                deleteBtn.style.justifyContent="center";
+                deleteBtn.onclick=function(){
+                    task.remove();
+                }
+                checkedBtn.style.background="transparent";
+                checkedBtn.style.border="none";
+                checkedBtn.style.cursor="pointer";
+                checkedBtn.onclick=function(){
+                    span.classList.toggle("checked");
+                    checkedBtn.style.opacity = "0.5";
+                }
+                deleteBtn.appendChild(imgEl);
+                innerDivEl.appendChild(checkedBtn);
+                taskContainer.appendChild(span);
+                innerDivEl.appendChild(deleteBtn);
                 taskContainer.appendChild(innerDivEl);
                 taskContainer.style.display="flex";
-                taskContainer.style.justifyContent="space-evenly";
+                taskContainer.style.justifyContent="space-between";
                 taskContainer.style.alignItems="center";
                 taskContainer.style.padding="10px";
-                taskContainer.style.border="1px solid rgb(255, 255, 255)";
+                taskContainer.style.border="2px dotted rgb(255, 255, 255)";
                 taskContainer.style.borderRadius="10px";
                 taskContainer.style.margin="10px";
                 taskContainer.style.width="300px";
                 taskContainer.style.height="50px";
                 taskContainer.style.fontSize="20px";
-               
+                task.style.listStyleType="none";
+                task.style.display="flex";
+                task.style.alignItems="center";
+                task.style.justifyContent="center";
                 
                 
                 task.appendChild(taskContainer);  
