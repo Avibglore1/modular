@@ -3,74 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator</title>
+    <title>To-Do List</title>
     <style>
+        *{margin: 0;padding: 0;box-sizing: border-box;}
         body{
-            background-color: rgb(223, 212, 212);
+            background-color: greenyellow;
             display: flex;
-            justify-content: center;
-            
-        }
-        .container{
-            text-align: center;
-            padding-top: 10px;
-            font-size: 20px;
-            background-color: white;
-            height: 300px;
-            width: 300px;
-            margin-top: 50px;
-            border-radius: 8px;
-            box-shadow: 3px 3px 1px black   ;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Poppins', sans-serif;
         }
         input{
-            padding: 5px;
-            margin: 10px;
-            width: 80%;
-            border-radius: 8px;
-            text-align: center;
-        }
-        button{
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: rgb(61, 61, 201);
-            border-radius: 8px;
-            color: white;
+            margin-top: 200px;
+        
+            padding: 20px;
+            width: 20%;
+            height: 50px;
+            border-radius: 10px;
             border: none;
-        }
-        h2{
-            padding: 5px;
-            margin: 5px;
+            outline: none;
             font-size: 20px;
+        }
+        input:focus{
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            border: 2px solid black;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Age Calculator</h1>
-        <p><b>Enter your date of Birth</b></p>
-        <input type="date" name="" id="">
-        <button>Calculate Age</button>
-        <h2></h2>
-    </div>
-    <script>
-        let date, yearOfBirth, currentYear,age;
-        let dateEl = document.querySelector("input");
-        let btnEl = document.querySelector("button");
-        let resultEl = document.querySelector("h2");
-        dateEl.addEventListener("input", function(){
-            date = dateEl.value;
-            yearOfBirth = new Date(date).getFullYear();
-            currentYear = new Date().getFullYear();
-            age = currentYear - yearOfBirth;
-        })
-        btnEl.addEventListener("click", function(){
-            if(age===undefined){
-                resultEl.textContent = `Please enter your date of birth`
-                return;
-            }
-            resultEl.textContent = `You are ${age} years old`
-        })
+    <input type="text" name="" id="" placeholder="Enter your task">
+    <ul>
 
+    </ul>
+    <script>
+        let inputEl = document.querySelector("input");
+        inputEl.addEventListener("keypress", function(event){            
+            if(event.key==="Enter"){
+                let task = document.createElement("li");
+                let taskContainer = document.createElement("div");
+                let btn = document.createElement("button");
+                let imgEl = document.createElement("img");
+                imgEl.src= "./bin.png";
+                imgEl.style.height="20px";
+                imgEl.style.width="20px";
+                let span = document.createElement("span");
+                span.innerText=inputEl.value;
+                let innerDivEl = document.createElement("div");
+                btn.appendChild(imgEl);
+                innerDivEl.appendChild(span);
+                innerDivEl.appendChild(btn);
+                taskContainer.appendChild(innerDivEl);
+                taskContainer.style.display="flex";
+                taskContainer.style.justifyContent="space-evenly";
+                taskContainer.style.alignItems="center";
+                taskContainer.style.padding="10px";
+                taskContainer.style.border="1px solid rgb(255, 255, 255)";
+                taskContainer.style.borderRadius="10px";
+                taskContainer.style.margin="10px";
+                taskContainer.style.width="300px";
+                taskContainer.style.height="50px";
+                taskContainer.style.fontSize="20px";
+               
+                
+                
+                task.appendChild(taskContainer);  
+                document.querySelector("ul").appendChild(task);  
+                inputEl.value = "";
+            }
+        })
     </script>
 </body>
 </html>

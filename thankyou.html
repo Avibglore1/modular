@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+   
+    <label for="">Enter your message</label><br>
+    <textarea name="" id="" cols="30" rows="10"></textarea><br>
+    <p>Counter: <span>0</span></p>
+    <script>
+        let textareaEl = document.querySelector("textarea");
+        let spanEl = document.querySelector("span");
+       textareaEl.addEventListener("input", function(e){
+        spanEl.textContent = textareaEl.value.length;
+        localStorage.setItem("message", textareaEl.value.length);
+       })
+       spanEl.textContent=localStorage.getItem("message");
+    </script>
+</body>
+</html>
